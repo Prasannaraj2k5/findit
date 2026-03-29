@@ -2,7 +2,7 @@ import express from 'express';
 import Item from '../models/Item.js';
 import { protect, optionalAuth } from '../middleware/auth.js';
 import { validate, itemValidation, paginationValidation, mongoIdValidation } from '../middleware/validate.js';
-import { upload } from '../middleware/upload.js';
+import { upload, useCloudinary } from '../middleware/upload.js';
 import { uploadLimiter } from '../middleware/rateLimiter.js';
 import { buildFilterQuery } from '../utils/helpers.js';
 import { findMatches, getMatchesForItem } from '../services/matchingService.js';
@@ -16,8 +16,8 @@ router.post('/', protect, uploadLimiter, upload.array('images', 5), itemValidati
     const { title, description, type, category, location, dateLostOrFound, contactInfo, verificationClues, handoverStatus } = req.body;
 
     const images = (req.files || []).map(file => ({
-      url: `/uploads/${file.filename}`,
-      publicId: file.filename,
+      url: useCloudinary ? file.path : `/uploads/${file.filename}`,
+      publicId: useCloudinary ? file.filename : file.filename,
     }));
 
     const item = await Item.create({
