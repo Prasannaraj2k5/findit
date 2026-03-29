@@ -6,6 +6,7 @@ import { validate, registerValidation, loginValidation } from '../middleware/val
 import { authLimiter } from '../middleware/rateLimiter.js';
 import { generateToken } from '../utils/helpers.js';
 import { sendVerificationEmail } from '../services/emailService.js';
+import { createNotification } from '../services/notificationService.js';
 
 const router = express.Router();
 
@@ -29,6 +30,15 @@ router.post('/register', authLimiter, registerValidation, validate, async (req, 
 
     // Send verification email (demo mode will log to console)
     await sendVerificationEmail(email, verificationToken);
+
+    // Welcome notification
+    await createNotification({
+      user: user._id,
+      type: 'system',
+      title: 'Welcome to FindIt! 🎉',
+      message: `Hey ${name}! Welcome to FindIt — your campus lost & found platform. Report lost items, browse found ones, and help reunite people with their belongings. Explore the Browse page to get started!`,
+      actionUrl: '/browse',
+    });
 
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
