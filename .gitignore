@@ -1,0 +1,16 @@
+node_modules/
+.env
+uploads/
+dist/
+.DS_Store
+*.log
+server/data/store.json
+
+# IDE & tools
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
+Thumbs.db
