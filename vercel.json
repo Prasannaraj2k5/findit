@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "cd server && npm install && cd ../client && npm install --production=false",
+  "installCommand": "npm install && cd client && npm install --production=false",
   "buildCommand": "cd client && npm run build",
   "outputDirectory": "client/dist",
   "framework": null,

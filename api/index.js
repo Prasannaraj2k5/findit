@@ -1,6 +1,9 @@
 import app, { initDB } from '../server/app.js';
 
-// Initialize DB connection (cached across warm invocations)
-await initDB();
+// Initialize DB connection on cold start
+const dbReady = initDB();
 
-export default app;
+export default async function handler(req, res) {
+  await dbReady;
+  return app(req, res);
+}
