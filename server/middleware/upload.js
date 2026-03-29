@@ -1,11 +1,22 @@
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
 import { AppError } from '../utils/errors.js';
 
-// Local storage for demo mode
+// Use /tmp on serverless (Vercel), local dir otherwise
+const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const uploadDir = isServerless ? '/tmp/uploads' : 'uploads';
+
+try {
+  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+} catch (e) {
+  console.warn('Could not create upload dir:', e.message);
+}
+
+// Local storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);

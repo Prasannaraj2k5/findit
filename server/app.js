@@ -35,7 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(generalLimiter);
 
 // Static files for uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const uploadsPath = isServerless ? '/tmp/uploads' : path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadsPath));
 
 // ── Route Selection: Demo Mode vs Real DB ─────────────────
 app.use('/api', (req, res, next) => {
