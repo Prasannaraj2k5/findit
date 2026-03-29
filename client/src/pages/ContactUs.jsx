@@ -30,9 +30,9 @@ export default function ContactUs() {
         {/* Contact Info */}
         <div className="lg:col-span-2 space-y-4 animate-slide-in-up" style={{ animationDelay: '0.05s', opacity: 0 }}>
           {[
-            { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'support@findit.university.in', href: 'mailto:support@findit.university.in' },
-            { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: '+91 80 1234 5678', href: 'tel:+918012345678' },
-            { icon: <MapPin className="w-5 h-5" />, label: 'Address', value: 'Student Services Building, University Campus, Bangalore 560001' },
+            { icon: <Mail className="w-5 h-5" />, label: 'Email', value: 'prasannaraj2k5@gmail.com', href: 'mailto:prasannaraj2k5@gmail.com' },
+            { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: '+91 99620 05819', href: 'tel:+919962005819' },
+            { icon: <MapPin className="w-5 h-5" />, label: 'Address', value: 'ECE Block, Kalasalingam University, Srivilliputtur, Virudhunagar, Tamil Nadu, India 626126' },
             { icon: <Clock className="w-5 h-5" />, label: 'Hours', value: 'Mon–Fri: 9:00 AM – 5:00 PM\nSat: 10:00 AM – 2:00 PM' },
           ].map((item, i) => (
             <div key={i} className="card p-4 flex items-start gap-4">
