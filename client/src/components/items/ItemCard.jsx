@@ -18,11 +18,20 @@ export default function ItemCard({ item }) {
       {/* Image */}
       <div className="relative h-48 bg-surface-100 dark:bg-surface-800 overflow-hidden">
         {item.images && item.images.length > 0 ? (
-          <img
-            src={item.images[0].url.startsWith('http') ? item.images[0].url : `http://localhost:5000${item.images[0].url}`}
-            alt={item.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+          <>
+            <img
+              src={item.images[0].url.startsWith('http') ? item.images[0].url : `/api${item.images[0].url.startsWith('/') ? '' : '/'}${item.images[0].url}`}
+              alt={item.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="w-full h-full items-center justify-center text-4xl absolute inset-0" style={{ display: 'none' }}>
+              {category?.icon || '📦'}
+            </div>
+          </>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-4xl">
             {category?.icon || '📦'}
