@@ -17,9 +17,12 @@ const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
+// ── Detect serverless environment ──────────────────────────
+const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
 // ── Multer config for file uploads ─────────────────────────
-const uploadsDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+const uploadsDir = isServerless ? '/tmp/uploads' : path.join(__dirname, '..', 'uploads');
+try { if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true }); } catch (e) { console.warn('Could not create uploads dir:', e.message); }
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadsDir),
@@ -29,7 +32,7 @@ const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } });
 
 
 // ── Data File Path ────────────────────────────────────────
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const DATA_DIR = isServerless ? '/tmp/data' : path.join(__dirname, '..', 'data');
 const DATA_FILE = path.join(DATA_DIR, 'store.json');
 
 // ── Helpers ───────────────────────────────────────────────
