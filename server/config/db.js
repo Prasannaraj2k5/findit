@@ -12,12 +12,7 @@ const connectDB = async () => {
   } catch (error) {
     console.error(`❌ MongoDB Connection Error: ${error.message}`);
     dbConnected = false;
-    // In demo mode, continue without DB
-    if (process.env.NODE_ENV === 'development') {
-      console.log('⚠️  Running in demo mode without MongoDB');
-    } else {
-      process.exit(1);
-    }
+    console.log('⚠️  Running in demo mode without MongoDB');
   }
 };
 
