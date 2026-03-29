@@ -189,6 +189,7 @@ This project is deployed on **Vercel** with:
 
 **Prasanna Raj**
 - GitHub: [@Prasannaraj2k5](https://github.com/Prasannaraj2k5)
+- LinkedIn: [Prasanna Raj](https://in.linkedin.com/in/prasanna2k5)
 - Email: prasannaraj2k5@gmail.com
 - University: Kalasalingam University, Tamil Nadu
 
