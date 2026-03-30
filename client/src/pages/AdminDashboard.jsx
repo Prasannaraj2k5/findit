@@ -38,13 +38,14 @@ export default function AdminDashboard() {
   };
 
   const handleDeleteItem = async (id) => {
-    if (!confirm('Remove this item?')) return;
+    if (!window.confirm('Remove this item?')) return;
     try {
       await adminAPI.deleteItem(id);
       setItems(prev => prev.filter(i => i._id !== id));
       toast.success('Item removed');
     } catch (error) {
-      toast.error('Failed to remove item');
+      console.error('Delete failed:', error.response?.data || error.message);
+      toast.error(error.response?.data?.error || 'Failed to remove item');
     }
   };
 
