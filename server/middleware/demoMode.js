@@ -105,7 +105,7 @@ function seedData() {
   store.users.push({
     _id: 'admin001',
     name: 'Admin User',
-    email: 'admin@university.edu',
+    email: 'admin@university.in',
     password: hashPwd('admin123'),
     avatar: '',
     role: 'admin',
@@ -117,11 +117,11 @@ function seedData() {
 
   // Demo users
   const demoUsers = [
-    { _id: 'user001', name: 'Priya Sharma', email: 'priya@university.edu', score: 65, level: 'highly_trusted', reported: 8, found: 5, returns: 4, days: 60 },
-    { _id: 'user002', name: 'Alex Johnson', email: 'alex@university.edu', score: 35, level: 'trusted', reported: 5, found: 3, returns: 2, days: 45 },
-    { _id: 'user003', name: 'Maya Chen', email: 'maya@university.edu', score: 12, level: 'new', reported: 2, found: 1, returns: 0, days: 20 },
-    { _id: 'user004', name: 'Ravi Patel', email: 'ravi@university.edu', score: 88, level: 'highly_trusted', reported: 10, found: 7, returns: 6, days: 75 },
-    { _id: 'user005', name: 'Sarah Williams', email: 'sarah@university.edu', score: 22, level: 'trusted', reported: 3, found: 2, returns: 1, days: 30 },
+    { _id: 'user001', name: 'Priya Sharma', email: 'priya@university.in', score: 65, level: 'highly_trusted', reported: 8, found: 5, returns: 4, days: 60 },
+    { _id: 'user002', name: 'Alex Johnson', email: 'alex@university.in', score: 35, level: 'trusted', reported: 5, found: 3, returns: 2, days: 45 },
+    { _id: 'user003', name: 'Maya Chen', email: 'maya@university.in', score: 12, level: 'new', reported: 2, found: 1, returns: 0, days: 20 },
+    { _id: 'user004', name: 'Ravi Patel', email: 'ravi@university.in', score: 88, level: 'highly_trusted', reported: 10, found: 7, returns: 6, days: 75 },
+    { _id: 'user005', name: 'Sarah Williams', email: 'sarah@university.in', score: 22, level: 'trusted', reported: 3, found: 2, returns: 1, days: 30 },
   ];
 
   demoUsers.forEach((u) => {
