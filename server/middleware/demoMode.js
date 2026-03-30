@@ -1051,6 +1051,7 @@ router.put('/matches/:id/status', (req, res) => {
 router.get('/users/leaderboard', (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const leaderboard = store.users
+    .filter(u => u.role !== 'admin')
     .map(u => ({
       _id: u._id,
       name: u.name,

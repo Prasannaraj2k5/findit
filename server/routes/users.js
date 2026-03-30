@@ -22,12 +22,12 @@ router.get('/leaderboard', async (req, res, next) => {
     const skip = (page - 1) * limit;
 
     const [users, total] = await Promise.all([
-      User.find()
+      User.find({ role: { $ne: 'admin' } })
         .select('name avatar reputation createdAt')
         .sort({ 'reputation.score': -1 })
         .skip(skip)
         .limit(limit),
-      User.countDocuments(),
+      User.countDocuments({ role: { $ne: 'admin' } }),
     ]);
 
     const leaderboard = users.map((user, index) => ({
