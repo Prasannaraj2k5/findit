@@ -20,10 +20,12 @@ if (useCloudinary) {
 
   storage = new CloudinaryStorage({
     cloudinary,
-    params: {
-      folder: 'findit',
-      allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-      transformation: [{ width: 800, height: 800, crop: 'limit', quality: 'auto' }],
+    params: async (req, file) => {
+      return {
+        folder: 'findit',
+        allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+        transformation: [{ width: 800, height: 800, crop: 'limit', quality: 'auto' }],
+      };
     },
   });
 
